@@ -1,0 +1,93 @@
+<!-- Create Account Form -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitTrack Login</title>
+   <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: radial-gradient(circle 490px at center,#474747, #050505);
+    }
+
+    #forgot-password {
+      font-size: 15px;
+      font-weight: bold;
+      color: #c6ff00;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    #forgot-password h2 {
+      margin-bottom: 20px;
+    }
+
+    #reset-password-form input {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    #reset-password-form button {
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #reset-password-form button:hover {
+      background-color: #218838;
+    }
+  </style>
+  <body>
+<div id="create-account">
+  <h2>Create Account</h2>
+  <form id="create-account-form">
+    <input type="text" id="new-username" placeholder="Enter username" required />
+    <input type="password" id="new-password" placeholder="Enter password" required />
+    <button type="submit">Create Account</button>
+  </form>
+</div>
+
+<script>
+  // Handle account creation
+  document.getElementById("create-account-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById("new-username").value;
+    const password = document.getElementById("new-password").value;
+
+    // Send the data to the server (PHP/Node.js) to save to the database
+    fetch('/create-account', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert(data.message);
+    })
+    .catch(error => console.error('Error:', error));
+  });
+</script>

@@ -1,0 +1,44 @@
+<!-- progress.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress | FitTrack</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="fade-in">
+  <div class="overlay">
+    <h1 class="main-logo"><span class="highlight">FIT</span>TRACK</h1>
+    <p class="subtext">Your progress this week</p>
+    <canvas id="progressChart" width="300" height="200"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    const progressChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Calories Burned',
+          data: [250, 300, 200, 350, 400, 380, 420],
+          borderColor: '#c6ff00',
+          fill: false,
+          tension: 0.1
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: 'white' } }
+        },
+        scales: {
+          x: { ticks: { color: 'white' } },
+          y: { ticks: { color: 'white' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

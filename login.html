@@ -1,0 +1,38 @@
+<!-- Login Form -->
+<div id="login-form">
+  <h2>Login</h2>
+  <form id="login">
+    <input type="text" id="username" placeholder="Enter username" required />
+    <input type="password" id="password" placeholder="Enter password" required />
+    <button type="submit">Login</button>
+  </form>
+  <a href="#" id="forgot-password-link">Forgot Password?</a>
+</div>
+
+<script>
+  // Handle Login
+  document.getElementById("login").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Send login request to backend (PHP/Node.js)
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        window.location.href = "/dashboard";  // Redirect to the dashboard
+      } else {
+        alert("Invalid credentials");
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  });
+</script>
